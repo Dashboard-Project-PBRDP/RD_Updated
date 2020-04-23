@@ -1,17 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<title>Sarpanch and Panch Details</title>
-	
-	<link type="text/css" rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<title>Health and Education</title>
 </head>
-
 <body>
-
-	<div id="wrapper">
+<div id="wrapper">
 		<div id="header">
 			<h2>${sessionScope.districtName} > ${sessionScope.blockName}> ${sessionScope.panchayatName}</h2>
 		</div>
@@ -24,7 +20,7 @@
 			<!-- put new button: Add Details -->
 			
 			<input type="button" value="Add Details" 
-				   onclick="window.location.href='panchayat/add-panch-form.jsp'; return false;"
+				   onclick="window.location.href='panchayat/add-HEd-form.jsp'; return false;"
 				   class="add-student-button"
 			/>
 			
@@ -32,27 +28,27 @@
 			
 				<tr>
 					<th>Sr No</th>
-					<th>First Name</th>
-					<th>Middle Name</th>
-					<th>Last Name</th>
-					<th>Designation</th>
-					<th>Age</th>
-					<th>Gender</th>
-					<th>Category</th>
-					<th>Profession</th>
-					<th>Contact Number</th>
-					<th>Action</th>
+					<th>Facility (Health/Education)</th>
+					<th>Facility Name</th>
+					<th>Level (Anganwadi/primary/sec/etc or PHC/CHC/etc)</th>
+					<th>Area</th>
+					<th>Location</th>
+					<th>Identifier (eg. Khasra No/ Number of items)</th>
+					<th>Condition (Scale - Very bad to Excellent) </th>
+					<th>Last Repaired (Year)</th>
+					<th>Number of students</th>
+					
 				</tr>
-				
+				<!--  
 				<c:forEach var="tempDetails" items="${Panch_List}" varStatus="counter">
 					
-					<!--  set up a link to update a details -->
+					
 					<c:url var="tempLink" value="PanchControllerServlet">
 						<c:param name="command" value="LOAD" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
 					</c:url>
 
-					<!--  set up a link to delete a details -->
+					
 					<c:url var="deleteLink" value="PanchControllerServlet">
 						<c:param name="command" value="DELETE" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
@@ -79,7 +75,7 @@
 					</tr>
 				
 				</c:forEach>
-				
+				-->
 			</table>
 		
 		</div>
@@ -92,6 +88,4 @@
 		</p>
 	</div>
 </body>
-
-
 </html>
