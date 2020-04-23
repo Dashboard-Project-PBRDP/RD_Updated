@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<context>
+<Resource name = "jdbc/RDP_Dashboard"
+auth="Container" type="javax.sql.DataSource"
+maxactive="20" maxIdle="5" maxWait="10000"
+username="AB" password="brute"
+driverClassName="com.mysql.jdbc.Driver"
+url="jdbc:mysql://Localhost:3306/RDP_Dashboard"/>
+</context>
