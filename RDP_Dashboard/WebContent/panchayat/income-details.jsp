@@ -32,16 +32,17 @@
 			
 				<tr>
 					<th>Sr No</th>
-					<th>First Name</th>
-					<th>Middle Name</th>
-					<th>Last Name</th>
-					<th>Designation</th>
-					<th>Age</th>
-					<th>Gender</th>
-					<th>Category</th>
-					<th>Profession</th>
-					<th>Contact Number</th>
-					<th>Action</th>
+					<th>Year</th>
+					<th>Month</th>
+					<th>Opening Balance</th>
+					<th>Income Type (Own/Grant)</th>
+					<th>Income Source (Dropdown)</th>
+					<th>Amount</th>
+					<th>Purpose</th>
+					<th>Bank Account (Dropdown)</th>
+					<th>Sanction Letter Number</th>
+					<th>Sanction Letter Date</th>
+					<th>UC Status</th>
 				</tr>
 				
 				

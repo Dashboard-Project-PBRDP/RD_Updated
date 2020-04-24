@@ -33,7 +33,7 @@
 				<tr></tr>
 					
 					<tr><td>Population</td><td>_________</td></tr>
-					<tr><td>No of Households</td>_________<td></td></tr>
+					<tr><td>No of Households</td><td>_________</td></tr>
 					<tr><td>No of Voters</td><td>_________</td></tr>
 					<tr><td>No of Wards</td><td>_________</td></tr>
 					<tr><td>Topography</td><td>_________</td></tr>

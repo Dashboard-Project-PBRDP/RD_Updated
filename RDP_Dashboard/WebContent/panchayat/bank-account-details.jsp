@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Bank Account Details</title>
+<link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div id="wrapper">

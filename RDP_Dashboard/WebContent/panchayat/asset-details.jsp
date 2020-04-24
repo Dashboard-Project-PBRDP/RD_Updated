@@ -32,16 +32,14 @@
 			
 				<tr>
 					<th>Sr No</th>
-					<th>First Name</th>
-					<th>Middle Name</th>
-					<th>Last Name</th>
-					<th>Designation</th>
-					<th>Age</th>
-					<th>Gender</th>
-					<th>Category</th>
-					<th>Profession</th>
-					<th>Contact Number</th>
-					<th>Action</th>
+					<th>Asset Name</th>
+					<th>Asset Location</th>
+					<th>Identifier (Khasra no. etc)</th>
+					<th>Estimated Cost</th>
+					<th>Expenditure From (Income Purpose DD)</th>
+					<th>Total Expenditure till now (Completion)</th>
+					<th>UC Status</th>
+					
 				</tr>
 				
 				

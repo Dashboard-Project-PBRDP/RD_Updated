@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Health and Education</title>
+<link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div id="wrapper">
@@ -36,7 +37,7 @@
 					<th>Identifier (eg. Khasra No/ Number of items)</th>
 					<th>Condition (Scale - Very bad to Excellent) </th>
 					<th>Last Repaired (Year)</th>
-					<th>Number of students</th>
+					<th>Number of students/Beds</th>
 					
 				</tr>
 				<!--  

@@ -32,16 +32,15 @@
 			
 				<tr>
 					<th>Sr No</th>
-					<th>First Name</th>
-					<th>Middle Name</th>
-					<th>Last Name</th>
-					<th>Designation</th>
-					<th>Age</th>
-					<th>Gender</th>
-					<th>Category</th>
-					<th>Profession</th>
-					<th>Contact Number</th>
-					<th>Action</th>
+					<th>Income Type-Source-Amount (Dropdown)</th>
+					<th>Bank Account</th>
+					<th>Payee's Name</th>
+					<th>Payee's Address</th>
+					<th>Amount</th>
+					<th>Date</th>
+					<th>Purpose (Dropdown from Income heads)</th>
+					<th>For Asset (Dropdown)</th>
+					
 				</tr>
 				
 				
