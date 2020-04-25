@@ -34,6 +34,7 @@
 					<th>Sr No</th>
 					<th>Income Type-Source-Amount (Dropdown)</th>
 					<th>Bank Account</th>
+					<th>Cheque No/ PFMS Transaction Id</th>
 					<th>Payee's Name</th>
 					<th>Payee's Address</th>
 					<th>Amount</th>
