@@ -1,0 +1,43 @@
+panch_details table DDL
+
+
+CREATE TABLE `panch_details` (
+  `panch_id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) NOT NULL,
+  `middle_name` varchar(45) DEFAULT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `designation` varchar(45) NOT NULL DEFAULT 'Member',
+  `age` int DEFAULT NULL,
+  `gender` varchar(45) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `profession` varchar(45) DEFAULT NULL,
+  `contact` double DEFAULT NULL,
+  `fk_panch_panchayat` int NOT NULL,
+  PRIMARY KEY (`panch_id`),
+  UNIQUE KEY `id_UNIQUE` (`panch_id`),
+  KEY `fk_panch_panchayat_idx` (`fk_panch_panchayat`),
+  CONSTRAINT `fk_panch_panchayat` FOREIGN KEY (`fk_panch_panchayat`) REFERENCES `panchayat` (`panchayat_id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+income_details table DDL
+
+CREATE TABLE `income_details` (
+  `income_id` int NOT NULL AUTO_INCREMENT,
+  `year` varchar(45) NOT NULL,
+  `month` varchar(45) NOT NULL,
+  `opening_balance` varchar(45) NOT NULL,
+  `income_type` varchar(45) NOT NULL,
+  `income_source` varchar(45) NOT NULL,
+  `amount` varchar(45) NOT NULL,
+  `purpose` varchar(45) DEFAULT NULL,
+  `bank_account` varchar(45) NOT NULL,
+  `sanction_letter_no` varchar(45) NOT NULL,
+  `sanction_letter_date` varchar(45) NOT NULL,
+  `uc_status` varchar(45) NOT NULL,
+  `fk_income_panchayat` int NOT NULL,
+  PRIMARY KEY (`income_id`),
+  UNIQUE KEY `income_id_UNIQUE` (`income_id`),
+  KEY `fk_income_panchayat_idx` (`fk_income_panchayat`),
+  CONSTRAINT `fk_income_panchayat` FOREIGN KEY (`fk_income_panchayat`) REFERENCES `panchayat` (`panchayat_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
