@@ -23,7 +23,7 @@ private static final long serialVersionUID = 1L;
 	
 	private DbUtil DbUtil;
 	
-	@Resource(name = "jdbc/RDP_Dashboard")
+	@Resource(name = "jdbc/datamgmt")
 	private DataSource dataSource;
 	
 	

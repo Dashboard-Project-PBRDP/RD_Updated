@@ -23,7 +23,7 @@ public class PanchayatControllerServlet extends HttpServlet {
        
 private PanchayatDbUtil DbUtil;
 	
-	@Resource(name = "jdbc/RDP_Dashboard")
+	@Resource(name = "jdbc/datamgmt")
 	private DataSource dataSource;
 	int block_id=0;
 	String blockName="";

@@ -43,7 +43,7 @@ private static DataSource dataSource;
 		//process result set
 		while (rs.next()) {
 			// retrive data from resultset
-				int id = rs.getInt("id");
+				int id = rs.getInt("panch_id");
 				String firstName = rs.getString("first_name");
 				String middleName = rs.getString("middle_name");
 				String lastName = rs.getString("last_name");
@@ -55,7 +55,7 @@ private static DataSource dataSource;
 				long contact = rs.getLong("contact");
 
 			// create new panch object
-			Panch tempPanch = new Panch(id, firstName, middleName, lastName,designation,age,gender,category,profession,contact);
+			Panch tempPanch = new Panch(id, firstName, middleName, lastName,designation,age,gender,category,profession,contact,panchayat_id);
 			
 			// add it to list of panchs
 			panchList.add(tempPanch);
@@ -138,7 +138,7 @@ private static DataSource dataSource;
 			conn = dataSource.getConnection();
 	
 			// create sql for delete
-			String sql = "delete from panch_details where id = ?";
+			String sql = "delete from panch_details where panch_id = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -153,7 +153,7 @@ private static DataSource dataSource;
 		
 	}
 
-	/*public Panch getPanch(String thePanchId) throws Exception {
+	public Panch getPanch(int thePanchId,int panchayat_id) throws Exception {
 		
 		Panch tempPanch = null;
 		Connection conn = null;
@@ -161,13 +161,13 @@ private static DataSource dataSource;
 		ResultSet rs = null;
 		int panch_id = 0;
 		try {
-			panch_id = Integer.parseInt(thePanchId);
+			panch_id = thePanchId;
 			
 			// get a Connection
 			conn = dataSource.getConnection();
 			
 			//create sql query
-			String sql = "select * from panch where panch_id="+ panch_id;
+			String sql = "select * from panch_details where panch_id="+ panch_id;
 			stmt = conn.createStatement();
 			
 			//execute query
@@ -176,12 +176,21 @@ private static DataSource dataSource;
 			//process result set
 			if (rs.next()) {
 				// retrive data from resultset
-					//int id = rs.getInt("panch_id");
-					String panchName = rs.getString("panch_name");
+					int id = rs.getInt("panch_id");
+					int fk_panch=rs.getInt("fk_panch_panchayat");
+					String firstName = rs.getString("first_name");
+					String middleName = rs.getString("middle_name");
+					String lastName = rs.getString("last_name");
+					String designation = rs.getString("designation");
+					int age = rs.getInt("age");
+					String gender = rs.getString("gender");
+					String category = rs.getString("category");
+					String profession = rs.getString("profession");
+					long contact = rs.getLong("contact");
 					
 					
 				// create new panch object
-				tempPanch = new Panch(panch_id,panchName);
+				tempPanch = new Panch(panch_id,firstName, middleName,lastName, designation, age, gender, category, profession, contact,fk_panch);
 				
 			}
 			else {
@@ -195,7 +204,7 @@ private static DataSource dataSource;
 		}
 	}
 
-	public void updatePanch(Panch thePanch) throws Exception {
+	public void updatePanch(Panch thePanch,int panchayat_id) throws Exception {
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 
@@ -204,16 +213,26 @@ private static DataSource dataSource;
 			myConn = dataSource.getConnection();
 			
 			// create SQL update statement
-			String sql = "update panch "
-						+ "set panch_name=? "
+			String sql = "update panch_details "
+					+ "set first_name=?,middle_name=?,last_name=?,designation=?,age=?,gender=?,category=?,profession=?,contact=? "
 						+ "where panch_id=?";
-			
+			/*String sql = "update panch_details "
+					+ "set first_name='ish2',middle_name='mid2',last_name='Last2' "
+					+  "where panch_id=?";*/
 			// prepare statement
 			myStmt = myConn.prepareStatement(sql);
 			
 			// set params
-			myStmt.setString(1, thePanch.getpanchName());
-			myStmt.setInt(2, thePanch.getId());
+			myStmt.setString(1, thePanch.getFirstName());
+			myStmt.setString(2, thePanch.getMiddleName());
+			myStmt.setString(3, thePanch.getLastName());
+			myStmt.setString(4, thePanch.getDesignation());
+			myStmt.setInt(5, thePanch.getAge());
+			myStmt.setString(6, thePanch.getGender());
+			myStmt.setString(7, thePanch.getCategory());
+			myStmt.setString(8, thePanch.getProfession());
+			myStmt.setLong(9, thePanch.getContact());
+			myStmt.setInt(10, thePanch.getId());
 			
 			// execute SQL statement
 			myStmt.execute();
@@ -223,5 +242,5 @@ private static DataSource dataSource;
 			close(myConn, myStmt, null);
 		}
 		
-	}*/
+	}
 }

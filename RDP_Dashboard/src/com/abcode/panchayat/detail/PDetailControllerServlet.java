@@ -208,7 +208,7 @@ public class PDetailControllerServlet extends HttpServlet {
 				request.setAttribute("panchayatName", panchayatName);
 						
 				//send to JSP
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/income-details.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("IncomeControllerServlet");
 				dispatcher.forward(request, response);
 		
 	}

@@ -21,7 +21,7 @@ public class PanchControllerServlet extends HttpServlet {
        
 private SarpanchDbUtil panchDbUtil;
 	
-	@Resource(name = "jdbc/RDP_Dashboard")
+	@Resource(name = "jdbc/datamgmt")
 	private DataSource dataSource;
 	
 	@Override
@@ -113,14 +113,23 @@ int panchayat_id = 0;
 	private void updatePanch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		// read panch info from form data
-				int id = Integer.parseInt(request.getParameter("panchId"));
-				String panchName = request.getParameter("panchName");
-				
+				int thePanchId = Integer.parseInt(request.getParameter("detailsId"));
+				String firstName = request.getParameter("firstName");		
+				String middleName = request.getParameter("middleName");
+				String lastName = request.getParameter("lastName");
+				String designation = request.getParameter("designation");
+				int age = Integer.parseInt(request.getParameter("age"));
+				String gender = request.getParameter("gender");
+				String category = request.getParameter("category");
+				String profession = request.getParameter("profession");
+				long contact = Long.parseLong(request.getParameter("contact"));
 				// create a new panch object
-	//			Panch thePanch = new Panch(id, panchName);
+				
+				//Panch thePanch = panchDbUtil.getPanch(thePanchId,panchayat_id);
+				Panch thePanch = new Panch(thePanchId, firstName, middleName, lastName,designation,age,gender,category,profession,contact,panchayat_id);
 				
 				// perform update on database
-	//			PanchDbUtil.updatePanch(thePanch);
+				panchDbUtil.updatePanch(thePanch,panchayat_id);
 				
 				// send them back to the "list panchs" page
 				listPanch(request, response);
@@ -132,18 +141,16 @@ int panchayat_id = 0;
 	private void loadPanch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		// read panch id from form data
-				String thePanchId = request.getParameter("panchId");
+				int thePanchId = Integer.parseInt(request.getParameter("detailsId"));
 				 
 				 
 				// get Panch from database (db util)
-		//		Panch thePanch = PanchDbUtil.getPanch(thePanchId);
+				Panch thePanch = panchDbUtil.getPanch(thePanchId,panchayat_id);
 				
 				// place Panch in the request attribute
-		//		request.setAttribute("The_Panch", thePanch);
-				
+				request.setAttribute("The_Panch", thePanch);
 				// send to jsp page: update-Panch-form.jsp
-				RequestDispatcher dispatcher = 
-						request.getRequestDispatcher("/update-panch-form.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/update-panch-form.jsp");
 				dispatcher.forward(request, response);
 		
 	}

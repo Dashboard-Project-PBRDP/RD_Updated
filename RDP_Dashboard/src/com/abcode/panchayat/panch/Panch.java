@@ -31,7 +31,7 @@ public class Panch {
 	}
 	
 	public Panch(int id, String firstName, String middleName, String lastName, String designation, int age,
-			String gender, String category, String profession, long contact) {
+			String gender, String category, String profession, long contact,int fk_panch) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -43,6 +43,7 @@ public class Panch {
 		this.category = category;
 		this.profession = profession;
 		this.contact = contact;
+		this.panchayat_id=fk_panch;
 	}
 
 	
@@ -61,6 +62,7 @@ public class Panch {
 		this.profession = profession;
 		this.contact = contact;
 	}
+
 
 	public String getDesignation() {
 		return designation;
@@ -132,7 +134,7 @@ public class Panch {
 	}
 	@Override
 	public String toString() {
-		return "Panch [id=" + id + ", panchayat_id=" + panchayat_id + ", firstName=" + firstName + ", middleName="
+		return "Panch [id=" + id + ", fk_panch_panchayat=" + panchayat_id + ", firstName=" + firstName + ", middleName="
 				+ middleName + ", lastName=" + lastName + ", age=" + age + ", gender=" + gender + ", category="
 				+ category + ", profession=" + profession + ", contact=" + contact + "]";
 	}
