@@ -49,18 +49,17 @@ private static DataSource dataSource;
 					String month = rs.getString("month");
 					String openingBalance = rs.getString("opening_balance");
 					String incomeType = rs.getString("income_type");
-					int incomeSource = rs.getInt("income_source");
+					String incomeSource = rs.getString("income_source");
 					String amount = rs.getString("amount");
 					String purpose = rs.getString("purpose");
 					String bankAccount = rs.getString("bank_account");
-					String sanction_letter_no = rs.getString("sanction_letter_no");
-					String sanction_letter_date = rs.getString("sanction_letter_date");
+					String sanctionno = rs.getString("sanction_letter_no");
+					String sanctiondate = rs.getString("sanction_letter_date");
 					String ucStatus = rs.getString("uc_status");
 
-				// create new panch object
-				Income tempIncome = new Income(id,panchayat_id,year,month,openingBalance,incomeType,incomeSource,amount,purpose,bankAccount,sanction_letter_no,sanction_letter_date,ucStatus);
-				
-				// add it to list of panchs
+				// create new income object
+				Income tempIncome = new Income(id,panchayat_id,year,month,openingBalance,incomeType,incomeSource,amount,purpose,bankAccount,sanctionno,sanctiondate,ucStatus);
+				// add it to list of income
 				IncomeList.add(tempIncome);
 			}
 			
@@ -89,7 +88,7 @@ private static DataSource dataSource;
 	}
 	}
 	
-	public static void addIncome(String year,String month,String openingBalance,String incomeType,int incomeSource,String amount,String purpose,String bankAccount,String sanction_letter_no,String sanction_letter_date,String ucStatus,int panchayat_id) 
+	public static void addIncome(String year,String month,String openingBalance,String incomeType,int incomeSource,String amount,String purpose,String bankAccount,String sanctionno,String sanctiondate,String ucStatus,int panchayat_id) 
 			throws SQLException {
 		
 		Connection conn = null;
@@ -114,8 +113,8 @@ private static DataSource dataSource;
 			pstmt.setString(6, amount);
 			pstmt.setString(7, purpose);
 			pstmt.setString(8, bankAccount);
-			pstmt.setString(9, sanction_letter_no);
-			pstmt.setString(10, sanction_letter_date);
+			pstmt.setString(9, sanctionno);
+			pstmt.setString(10, sanctiondate);
 			pstmt.setString(11, ucStatus);
 			pstmt.setInt(12, panchayat_id);
 			// execute sql insert
@@ -128,14 +127,103 @@ private static DataSource dataSource;
 		
 	}
 
-	
+	public Income getIncome(int theIncomeId,int panchayat_id) throws Exception {
+		
+		Income tempIncome = null;
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		int income_id = 0;
+		try {
+			income_id = theIncomeId;
+			
+			// get a Connection
+			conn = dataSource.getConnection();
+			
+			//create sql query
+			String sql = "select * from income_details where income_id="+ income_id;
+			stmt = conn.createStatement();
+			
+			//execute query
+			rs = stmt.executeQuery(sql);
+			
+			//process result set
+			if (rs.next()) {
+				// retrive data from resultset
+					int id = rs.getInt("income_id");
+				//	int fk_income=rs.getInt("fk_income_panchayat");
+					String year = rs.getString("year");
+					String month = rs.getString("month");
+					String opening_balance = rs.getString("opening_balance");
+					String income_type = rs.getString("income_type");
+					String income_source = rs.getString("income_source");
+					String amount = rs.getString("amount");
+					String purpose = rs.getString("purpose");
+					String bank_account = rs.getString("bank_account");
+					String sanctionno = rs.getString("sanction_letter_no");
+					String sanctiondate = rs.getString("sanction_letter_date");
+					String uc_status = rs.getString("uc_status");
+				
+					
+				// create new income object
+				tempIncome = new Income(income_id,year,month,opening_balance,income_type,income_source,amount,purpose,bank_account,sanctionno,sanctiondate,uc_status);
+				
+			}
+			else {
+				throw new Exception ("Couldn't find income id:"+income_id);
+			}
+		return tempIncome;
+		}
+		finally {
+			//close jdbc objects
+			close(conn,stmt,rs);
+		}
+	}
 
+	public void updateIncome(Income theIncome,int panchayat_id) throws Exception {
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+
+		try {
+			// get db connection
+			myConn = dataSource.getConnection();
+			
+			// create SQL update statement
+			String sql = "update income_details "
+					+ "set year=?,month=?,opening_balance=?,income_type=?,income_source=?,amount=?,purpose=?,bank_account=?,sanction_letter_no=?,sanction_letter_date=?,uc_status=? "
+						+ "where income_id=?";
+			// prepare statement
+			myStmt = myConn.prepareStatement(sql);
+			
+			// set parameters
+			myStmt.setString(1, theIncome.getyear());
+			myStmt.setString(2, theIncome.getmonth());
+			myStmt.setString(3, theIncome.getopeningBalance());
+			myStmt.setString(4, theIncome.getincomeType());
+			myStmt.setString(5, theIncome.getincomeSource());
+			myStmt.setString(6, theIncome.getamount());
+			myStmt.setString(7, theIncome.getpurpose());
+			myStmt.setString(8, theIncome.getbankAccount());
+			myStmt.setString(9, theIncome.getsanctionno());
+			myStmt.setString(10, theIncome.getsanctiondate());
+			myStmt.setString(11, theIncome.getucStatus());
+			myStmt.setInt(12, theIncome.getId());
+			
+			// execute SQL statement
+			myStmt.execute();
+		}
+		finally {
+			// clean up JDBC objects
+			close(myConn, myStmt, null);
+		}
+		
+	}
 	public void deleteIncome(String theIncomeId) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			//convert panch id to int
+			//convert income id to int
 			int income_id = Integer.parseInt(theIncomeId);
 			
 			// get db connection

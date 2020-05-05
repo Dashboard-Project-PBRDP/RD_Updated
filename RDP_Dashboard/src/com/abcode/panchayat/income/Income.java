@@ -8,15 +8,15 @@ public class Income {
 	private String month;
 	private String openingBalance;
 	private String incomeType;
-	private int incomeSource;
+	private String incomeSource;
 	private String amount;
 	private String purpose;
 	private String bankAccount;
-	private String sanction_letter_no;
-	private String sanction_letter_date;
+	private String sanctionno;
+	private String sanctiondate;
 	private String ucStatus;
 	
-	public Income(int id,int panchayat_id,String year,String month,String openingBalance,String incomeType,int incomeSource,String amount,String purpose,String bankAccount,String sanction_letter_no,String sanction_letter_date,String ucStatus) {
+	public Income(int id,int panchayat_id,String year,String month,String openingBalance,String incomeType,String incomeSource,String amount,String purpose,String bankAccount,String sanctionno,String sanctiondate,String ucStatus) {
 		super();
 		this.id = id;
 		this.panchayat_id = panchayat_id;
@@ -25,19 +25,32 @@ public class Income {
 		this.openingBalance=openingBalance;
 		this.incomeType=incomeType;
 		this.incomeSource=incomeSource;
-		this.sourceId=sourceId;
 		this.amount=amount;
 		this.purpose=purpose;
 		this.bankAccount=bankAccount;
-		this.sanction_letter_no=sanction_letter_no;
-		this.sanction_letter_date=sanction_letter_date;
+		this.sanctionno=sanctionno;
+		this.sanctiondate=sanctiondate;
+		this.ucStatus=ucStatus;
+	}
+	public Income(int id,String year,String month,String openingBalance,String incomeType,String incomeSource,String amount,String purpose,String bankAccount,String sanctionno,String sanctiondate,String ucStatus) {
+		super();
+		this.id = id;
+		this.year=year;
+		this.month=month;
+		this.openingBalance=openingBalance;
+		this.incomeType=incomeType;
+		this.incomeSource=incomeSource;
+		this.amount=amount;
+		this.purpose=purpose;
+		this.bankAccount=bankAccount;
+		this.sanctionno=sanctionno;
+		this.sanctiondate=sanctiondate;
 		this.ucStatus=ucStatus;
 	}
 	
-	
 	public Income(int scheme_id,String source_of_income) {
 		super();
-		this.setincomeSource(scheme_id);
+		this.setincomeSource(source_of_income);
 	}
 	public int getId() {
 		return id;
@@ -81,10 +94,10 @@ public class Income {
 	public void setschemeId(int sourceId) {
 		this.sourceId = sourceId;
 	}
-	public int getincomeSource() {
+	public String getincomeSource() {
 		return incomeSource;
 	}
-	public void setincomeSource(int incomeSource) {
+	public void setincomeSource(String incomeSource) {
 		this.incomeSource = incomeSource;
 	}
 	public String getamount() {
@@ -105,17 +118,17 @@ public class Income {
 	public void setbankAccount(String bankAccount) {
 		this.bankAccount = bankAccount;
 	}
-	public String getsanction_letter_no() {
-		return sanction_letter_no;
+	public String getsanctionno() {
+		return sanctionno;
 	}
-	public void setsanction_letter_no(String sanction_letter_no) {
-		this.sanction_letter_no = sanction_letter_no;
+	public void setsanctionno(String sanctionno) {
+		this.sanctionno=sanctionno;
 	}
-	public String getsanction_letter_date() {
-		return sanction_letter_date;
+	public String getsanctiondate() {
+		return sanctiondate;
 	}
-	public void setsanction_letter_date(String sanction_letter_date) {
-		this.sanction_letter_date = sanction_letter_date;
+	public void setsanctiondate(String sanctiondate) {
+		this.sanctiondate=sanctiondate;
 	}
 	public String getucStatus() {
 		return ucStatus;
@@ -126,6 +139,6 @@ public class Income {
 
 	@Override
 	public String toString() {
-		return "Income [id=" + id + ", panchayat_id=" + panchayat_id + ", year="+year+",month="+month+",opening_balance="+openingBalance+",income_type="+incomeType+",income_source="+incomeSource+",amount="+amount+",purpose="+purpose+",bankAccount="+bankAccount+",sanction_letter_no="+sanction_letter_no+",sanction_letter_date="+sanction_letter_date+",ucStatus="+ucStatus+"]";
+		return "Income [id=" + id + ", panchayat_id=" + panchayat_id + ", year="+year+",month="+month+",openingBalance="+openingBalance+",incomeType="+incomeType+",incomeSource="+incomeSource+",amount="+amount+",purpose="+purpose+",bankAccount="+bankAccount+",sanctionno="+sanctionno+",sanctiondate="+sanctiondate+",ucStatus="+ucStatus+"]";
 	}
 }

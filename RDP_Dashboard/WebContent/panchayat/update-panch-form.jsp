@@ -56,7 +56,9 @@
 						<td></td><td></td>
 					</tr><tr>
 						<td><label>Category:</label></td>
-						<td><select id="category" name="category" value="${The_Panch.category}">
+						<td><select id="category" name="category" >
+						<option value="${The_Panch.category}">${The_Panch.category}</option>
+						
 							  <option value="General">General</option>
 							  <option value="SC">Scheduled Caste</option>
 							  <option value="Woman">Woman</option>

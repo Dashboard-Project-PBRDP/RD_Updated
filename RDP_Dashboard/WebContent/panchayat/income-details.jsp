@@ -72,8 +72,8 @@
 						<td>${tempDetails.amount}</td>
 						<td>${tempDetails.purpose}</td>
 						<td>${tempDetails.bankAccount}</td>
-						<td>${tempDetails.sanction_letter_no}</td>
-							<td>${tempDetails.sanction_letter_date}</td>
+						<td>${tempDetails.sanctionno}</td>
+							<td>${tempDetails.sanctiondate}</td>
 								<td>${tempDetails.ucStatus}</td>
 						<td> 
 							<a href="${tempLink}">Update</a> 

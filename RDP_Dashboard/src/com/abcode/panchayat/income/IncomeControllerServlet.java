@@ -34,7 +34,7 @@ public class IncomeControllerServlet extends HttpServlet{
 	
 		super.init();
 		
-		//create our panch db util
+		//create our income db util
 		try {
 		IncomeDBUtil = new IncomeDBUtil(dataSource);
 		}
@@ -72,11 +72,11 @@ int panchayat_id = 0;
 				break;
 				
 			case "LOAD":
-				//loadIncome(request, response);
+				loadIncome(request, response);
 				break;
 				
 			case "UPDATE":
-			//	updateIncome(request, response);
+				updateIncome(request, response);
 				break;
 			
 			case "DELETE":
@@ -98,26 +98,70 @@ int panchayat_id = 0;
 		private void listIncome(HttpServletRequest request, HttpServletResponse response) 
 				throws Exception {
 				
-				//get Panch from dbUtil
+				//get income from dbUtil
 				List<Income> Income = IncomeDBUtil.getIncomeList(panchayat_id);
 				
-				//add list of sarpanch and panches to request
+				//add list of income to request
 				request.setAttribute("Income_List", Income);
 				
-				//send back selected panchayat
+				//send back selected income
 				
 				//send to JSP
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/income-details.jsp");
 				dispatcher.forward(request, response);
 				
 			}
+		private void updateIncome(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+			// read income info from form data
+					int theIncomeId = Integer.parseInt(request.getParameter("detailsId"));
+					String year = request.getParameter("year");		
+					String month = request.getParameter("month");
+					String openingBalance = request.getParameter("openingBalance");
+					String incomeType = request.getParameter("incomeType");
+					String incomeSource = request.getParameter("incomeSource");
+					String amount = request.getParameter("amount");
+					String purpose = request.getParameter("purpose");
+					String bankAccount = request.getParameter("bankAccount");
+					String sanctionno = request.getParameter("sanctionno");
+					String sanctiondate = request.getParameter("sanctiondate");
+					String ucStatus = request.getParameter("ucStatus");
+					 // create a new income object
+
+					Income theIncome =new Income(theIncomeId,year,month,openingBalance,incomeType,incomeSource,amount,purpose,bankAccount,sanctionno,sanctiondate,ucStatus);
+					// perform update on database
+					IncomeDBUtil.updateIncome(theIncome,panchayat_id);
+					
+					// send them back to the "list income" page
+					listIncome(request, response);
+			
+		}
+
+
+
+		private void loadIncome(HttpServletRequest request, HttpServletResponse response) throws Exception {
+			
+			// read income id from form data
+					int theIncomeId = Integer.parseInt(request.getParameter("detailsId"));
+					 
+					 
+					// get income from database (db util)
+					Income theIncome = IncomeDBUtil.getIncome(theIncomeId,panchayat_id);
+					
+					// place income in the request attribute
+					request.setAttribute("The_Income", theIncome);
+					// send to jsp page: update-income-form.jsp
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/update-income-form.jsp");
+					dispatcher.forward(request, response);
+			
+		}
 		private void getIncomeSource(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 			
 			//call dbutil to obtain all income sources
 			List<Income> incomeSources = IncomeDBUtil.getIncomeSource();
 					
-					//add constituency to request
+					//add income source to request
 					request.setAttribute("IncomeSource", incomeSources);
 					
 					//send back selected add form
@@ -128,7 +172,7 @@ int panchayat_id = 0;
 		}
 		private void addIncome(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-			// read panch info from form data
+			// read income info from form data
 					String year = request.getParameter("year");		
 					String month = request.getParameter("month");
 					String openingBalance = request.getParameter("openingBalance");
@@ -137,11 +181,11 @@ int panchayat_id = 0;
 					String amount = request.getParameter("amount");
 					String purpose = request.getParameter("purpose");
 					String bankAccount = request.getParameter("bankAccount");
-					String sanction_letter_no = request.getParameter("sanction_letter_no");
-					String sanction_letter_date = request.getParameter("sanction_letter_date");
+					String sanctionno = request.getParameter("sanctionno");
+					String sanctiondate = request.getParameter("sanctiondate");
 					String ucStatus = request.getParameter("ucStatus");
 						// add the Panch to the database
-					IncomeDBUtil.addIncome(year,month,openingBalance,incomeType,incomeSource,amount,purpose,bankAccount,sanction_letter_no,sanction_letter_date,ucStatus,panchayat_id);
+					IncomeDBUtil.addIncome(year,month,openingBalance,incomeType,incomeSource,amount,purpose,bankAccount,sanctionno,sanctiondate,ucStatus,panchayat_id);
 							
 					// send back to main page (the Panch list)
 					listIncome(request, response);
@@ -152,16 +196,16 @@ int panchayat_id = 0;
 
 		private void deleteIncome(HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-			// read panch id from form data
+			// read income id from form data
 					String theIncomeId = request.getParameter("detailsId");
 					
-					// delete panch from database
+					// delete income from database
 					IncomeDBUtil.deleteIncome(theIncomeId);
 					
-					// send them back to "list panchs" page
+					// send them back to "list income" page
 					listIncome(request, response);
 					
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/error-panchs.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/error-income.jsp");
 					dispatcher.forward(request, response);
 					
 			
