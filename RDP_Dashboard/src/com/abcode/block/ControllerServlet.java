@@ -45,7 +45,7 @@ private static final long serialVersionUID = 1L;
 		}
 	}
 
-
+	HttpSession session=null;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -54,7 +54,7 @@ private static final long serialVersionUID = 1L;
 		
 		if(request.getParameter("district_id")!= null) {
 		//set session object
-			HttpSession session = request.getSession();
+			session = request.getSession();
 			//get selected district value
 			district_id = Integer.parseInt(request.getParameter("district_id"));
 			districtName = request.getParameter("districtName");

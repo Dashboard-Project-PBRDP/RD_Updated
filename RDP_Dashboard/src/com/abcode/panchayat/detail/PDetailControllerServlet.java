@@ -21,8 +21,7 @@ public class PDetailControllerServlet extends HttpServlet {
        
 	int panchayat_id=0;
 	String panchayatName="";
-	HttpSession session = null;
-	
+	 HttpSession session=null;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,6 +37,7 @@ public class PDetailControllerServlet extends HttpServlet {
 			panchayatName = request.getParameter("panchayatName");
 			session.setAttribute("panchayat_id", panchayat_id);
 			session.setAttribute("panchayatName", panchayatName);
+			System.out.println("=========panchayat id do get--"+panchayat_id);
 			}
 		try {
 			// read the "command" parameter
@@ -218,9 +218,10 @@ public class PDetailControllerServlet extends HttpServlet {
 		//add  Details to request
 				request.setAttribute("panchayat_id", panchayat_id);
 				request.setAttribute("panchayatName", panchayatName);
-						
+				System.out.println("=========panchayat id basic--"+panchayat_id);
+
 				//send to JSP
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/basic-details.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("BasicControllerServlet");
 				dispatcher.forward(request, response);
 		
 	}
