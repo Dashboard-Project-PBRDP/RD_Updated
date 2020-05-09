@@ -23,10 +23,10 @@
 		
 			<!-- put new button: Add Details -->
 			
-			<input type="button" value="Add Details" 
+	<!-- 	  	<input type="button" value="Add Details" 
 				   onclick="window.location.href='panchayat/add-basic-form.jsp';"
-				   class="add-student-button"	/>
-		
+				   class="add-student-button"	/> 
+		-->
 			 
 			<table>
 				<c:forEach var="tempDetails" items="${Basic_List}" varStatus="counter">

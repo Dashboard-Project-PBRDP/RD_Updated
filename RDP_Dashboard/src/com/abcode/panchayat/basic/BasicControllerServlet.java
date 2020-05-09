@@ -97,13 +97,21 @@ int panchayat_id = 0;
 				
 				//get income from dbUtil
 				List<Basic> Basic = BasicDBUtil.getBasicList(panchayat_id);
-				
+				RequestDispatcher dispatcher=null;
 				//add income to request
 				request.setAttribute("Basic_List", Basic);
 				
 				//send back selected income
 				//send to JSP
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/basic-details.jsp");
+				if(Basic.isEmpty())
+				{
+					dispatcher = request.getRequestDispatcher("/panchayat/add-basic-details.jsp");
+				}
+				else
+				{
+				dispatcher = request.getRequestDispatcher("/panchayat/basic-details.jsp");
+
+				}
 				dispatcher.forward(request, response);
 				
 			}
@@ -136,7 +144,6 @@ int panchayat_id = 0;
 							areaPonds,pondFisheries,panchayatghar,panchayatgharType,
 							dharamshalas,reservedDharamshalas,parks,areaParks,playgrounds,
 							areaPlaygrounds,mandiDistance,banks,datelastUpdated);
-					System.out.println("=========="+theBasic);
 					// perform update on database
 					BasicDBUtil.updateBasic(theBasic,panchayat_id);
 					

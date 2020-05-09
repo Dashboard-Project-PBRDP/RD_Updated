@@ -32,7 +32,7 @@ public class PDetailControllerServlet extends HttpServlet {
 		//set session object
 			 session = request.getSession();
 			//get selected panchayat value
-			
+			System.out.println("+++++++++++++"+request.getParameter("panchayatId"));
 			panchayat_id = Integer.parseInt(request.getParameter("panchayatId"));
 			panchayatName = request.getParameter("panchayatName");
 			session.setAttribute("panchayat_id", panchayat_id);
