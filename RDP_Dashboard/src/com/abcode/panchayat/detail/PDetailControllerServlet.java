@@ -21,23 +21,21 @@ public class PDetailControllerServlet extends HttpServlet {
        
 	int panchayat_id=0;
 	String panchayatName="";
-	 HttpSession session=null;
+	HttpSession session=null;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(request.getParameter("panchayatId")!= null && panchayat_id==0) {
+		if(request.getParameter("panchayatId")!= null) {
 		//set session object
 			 session = request.getSession();
 			//get selected panchayat value
-			System.out.println("+++++++++++++"+request.getParameter("panchayatId"));
 			panchayat_id = Integer.parseInt(request.getParameter("panchayatId"));
 			panchayatName = request.getParameter("panchayatName");
 			session.setAttribute("panchayat_id", panchayat_id);
 			session.setAttribute("panchayatName", panchayatName);
-			System.out.println("=========panchayat id do get--"+panchayat_id);
 			}
 		try {
 			// read the "command" parameter
@@ -154,26 +152,37 @@ public class PDetailControllerServlet extends HttpServlet {
 
 
 	private void healthEducationDetails(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		//add  Details to request
+		request.setAttribute("panchayat_id", panchayat_id);
+		request.setAttribute("panchayatName", panchayatName);
+
 		//send to JSP
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/health-education-details.jsp");
-				dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("FacilityControllerServlet");
+		dispatcher.forward(request, response);
 		
 	}
 
 
 	private void bankAccountDetails(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		//send to JSP
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/bank-account-details.jsp");
+		//add  Details to request
+				request.setAttribute("panchayat_id", panchayat_id);
+				request.setAttribute("panchayatName", panchayatName);
+
+				//send to JSP
+				RequestDispatcher dispatcher = request.getRequestDispatcher("BankControllerServlet");
 				dispatcher.forward(request, response);
 		
 	}
 
 
 	private void propertyDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		//add  Details to request
+		request.setAttribute("panchayat_id", panchayat_id);
+		request.setAttribute("panchayatName", panchayatName);
+
 		//send to JSP
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/panchayat/property-details.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("PropertyControllerServlet");
 		dispatcher.forward(request, response);
-		
 	}
 
 
@@ -218,7 +227,6 @@ public class PDetailControllerServlet extends HttpServlet {
 		//add  Details to request
 				request.setAttribute("panchayat_id", panchayat_id);
 				request.setAttribute("panchayatName", panchayatName);
-				System.out.println("=========panchayat id basic--"+panchayat_id);
 
 				//send to JSP
 				RequestDispatcher dispatcher = request.getRequestDispatcher("BasicControllerServlet");
@@ -244,31 +252,31 @@ public class PDetailControllerServlet extends HttpServlet {
 		throws Exception {
 		
 		List<PanchayatDetail> detailList = new ArrayList<>();
-		PanchayatDetail p1=new PanchayatDetail(panchayat_id,1,"Info of Sarpanch and Members");
+		PanchayatDetail p1=new PanchayatDetail(panchayat_id,panchayatName,1,"Info of Sarpanch and Members");
 		detailList.add(p1);
-		PanchayatDetail p2=new PanchayatDetail(panchayat_id,2,"Basic Details");
+		PanchayatDetail p2=new PanchayatDetail(panchayat_id,panchayatName,2,"Basic Details");
 		detailList.add(p2);
-		PanchayatDetail p3=new PanchayatDetail(panchayat_id,3,"Property Details");
+		PanchayatDetail p3=new PanchayatDetail(panchayat_id,panchayatName,3,"Property Details");
 		detailList.add(p3);
-		PanchayatDetail p4=new PanchayatDetail(panchayat_id,4,"Bank Account Details");
+		PanchayatDetail p4=new PanchayatDetail(panchayat_id,panchayatName,4,"Bank Account Details");
 		detailList.add(p4);
-		PanchayatDetail p5=new PanchayatDetail(panchayat_id,5,"Health/Education Facilities");
+		PanchayatDetail p5=new PanchayatDetail(panchayat_id,panchayatName,5,"Health/Education Facilities");
 		detailList.add(p5);
-		PanchayatDetail p6=new PanchayatDetail(panchayat_id,6,"Income");
+		PanchayatDetail p6=new PanchayatDetail(panchayat_id,panchayatName,6,"Income");
 		detailList.add(p6);
-		PanchayatDetail p7=new PanchayatDetail(panchayat_id,7,"Expenditure");
+		PanchayatDetail p7=new PanchayatDetail(panchayat_id,panchayatName,7,"Expenditure");
 		detailList.add(p7);
-		PanchayatDetail p8=new PanchayatDetail(panchayat_id,8,"Assets Created");
+		PanchayatDetail p8=new PanchayatDetail(panchayat_id,panchayatName,8,"Assets Created");
 		detailList.add(p8);
-		PanchayatDetail p9=new PanchayatDetail(panchayat_id,9,"Smart Village Campaign");
+		PanchayatDetail p9=new PanchayatDetail(panchayat_id,panchayatName,9,"Smart Village Campaign");
 		detailList.add(p9);
-		PanchayatDetail p10=new PanchayatDetail(panchayat_id,10,"Pending Court Cases");
+		PanchayatDetail p10=new PanchayatDetail(panchayat_id,panchayatName,10,"Pending Court Cases");
 		detailList.add(p10);
-		PanchayatDetail p11=new PanchayatDetail(panchayat_id,11,"Pending Audit Paras");
+		PanchayatDetail p11=new PanchayatDetail(panchayat_id,panchayatName,11,"Pending Audit Paras");
 		detailList.add(p11);
-		PanchayatDetail p12=new PanchayatDetail(panchayat_id,12,"Illegal Possessions");
+		PanchayatDetail p12=new PanchayatDetail(panchayat_id,panchayatName,12,"Illegal Possessions");
 		detailList.add(p12);
-		PanchayatDetail p13=new PanchayatDetail(panchayat_id,13,"Custom Report");
+		PanchayatDetail p13=new PanchayatDetail(panchayat_id,panchayatName,13,"Custom Report");
 		detailList.add(p13);
 		//add  Details to request
 		request.setAttribute("Detail_List", detailList);

@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Health and Education</title>
-<link type="text/css" rel="stylesheet" href="css/style.css">
+	<title>Health/Education facility details</title>
+	
+	<link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div id="wrapper">
+
+	<div id="wrapper">
 		<div id="header">
 			<h2>${sessionScope.districtName} > ${sessionScope.blockName}> ${sessionScope.panchayatName}</h2>
 		</div>
@@ -21,7 +24,7 @@
 			<!-- put new button: Add Details -->
 			
 			<input type="button" value="Add Details" 
-				   onclick="window.location.href='panchayat/add-HEd-form.jsp'; return false;"
+				   onclick="window.location.href='panchayat/add-health-education-form.jsp'; return false;"
 				   class="add-student-button"
 			/>
 			
@@ -32,7 +35,7 @@
 					<th>Facility (Health/Education)</th>
 					<th>Facility Name</th>
 					<th>Level (Anganwadi/primary/sec/etc or PHC/CHC/etc)</th>
-					<th>Area</th>
+					<th>Area (In acres)</th>
 					<th>Location</th>
 					<th>Identifier (eg. Khasra No/ Number of items)</th>
 					<th>Condition (Scale - Very bad to Excellent) </th>
@@ -40,32 +43,31 @@
 					<th>Number of students/Beds</th>
 					
 				</tr>
-				<!--  
-				<c:forEach var="tempDetails" items="${Panch_List}" varStatus="counter">
+				<c:forEach var="tempDetails" items="${Facility_List}" varStatus="counter">
 					
-					
-					<c:url var="tempLink" value="PanchControllerServlet">
+					<!--  set up a link to update a details -->
+					<c:url var="tempLink" value="FacilityControllerServlet">
 						<c:param name="command" value="LOAD" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
 					</c:url>
 
-					
-					<c:url var="deleteLink" value="PanchControllerServlet">
+					<!--  set up a link to delete a details -->
+					<c:url var="deleteLink" value="FacilityControllerServlet">
 						<c:param name="command" value="DELETE" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
 					</c:url>
-																		
+																	
 					<tr>
 						<td> ${counter.count} </td>
-						<td> ${tempDetails.firstName} </td>
-						<td>${tempDetails.middleName}</td>
-						<td>${tempDetails.lastName}</td>
-						<td>${tempDetails.designation}</td>
-						<td>${tempDetails.age}</td>
-						<td>${tempDetails.gender}</td>
-						<td>${tempDetails.category}</td>
-						<td>${tempDetails.profession}</td>
-						<td>${tempDetails.contact}</td>
+						<td> ${tempDetails.facilityType} </td>
+						<td> ${tempDetails.facilityName} </td>
+						<td>${tempDetails.facilityLevel}</td>
+						<td>${tempDetails.area}</td>
+						<td>${tempDetails.location}</td>
+						<td>${tempDetails.identifier}</td>
+						<td>${tempDetails.facilityCondition}</td>
+						<td>${tempDetails.lastRepaired}</td>
+						<td>${tempDetails.facilityNumber}</td>
 						<td> 
 							<a href="${tempLink}">Update</a> 
 							 | 
@@ -74,9 +76,7 @@
 							Delete</a>	
 						</td>
 					</tr>
-				
-				</c:forEach>
-				-->
+					</c:forEach>
 			</table>
 		
 		</div>

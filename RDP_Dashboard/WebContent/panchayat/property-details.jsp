@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Property Details</title>
-<link type="text/css" rel="stylesheet" href="css/style.css">
+	<title>Property Details</title>
+	
+	<link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div id="wrapper">
+
+	<div id="wrapper">
 		<div id="header">
 			<h2>${sessionScope.districtName} > ${sessionScope.blockName}> ${sessionScope.panchayatName}</h2>
 		</div>
@@ -24,14 +27,12 @@
 				   onclick="window.location.href='panchayat/add-property-form.jsp'; return false;"
 				   class="add-student-button"
 			/>
-			
 			<table>
-			
 				<tr>
 					<th>Sr No</th>
 					<th>Property Type (Movable/Immovable)</th>
 					<th>Property Name</th>
-					<th>Area</th>
+					<th>Area (in acres)</th>
 					<th>Location</th>
 					<th>Identifier (eg. Khasra No/ Number of items)</th>
 					<th>Purpose (Commercial/Common) </th>
@@ -43,32 +44,33 @@
 					
 					
 				</tr>
-				<!--  
-				<c:forEach var="tempDetails" items="${Panch_List}" varStatus="counter">
+			
+				<c:forEach var="tempDetails" items="${Property_List}" varStatus="counter">
 					
-					
-					<c:url var="tempLink" value="PanchControllerServlet">
+					<!--  set up a link to update a details -->
+					<c:url var="tempLink" value="PropertyControllerServlet">
 						<c:param name="command" value="LOAD" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
 					</c:url>
 
-					
-					<c:url var="deleteLink" value="PanchControllerServlet">
+					<!--  set up a link to delete a details -->
+					<c:url var="deleteLink" value="PropertyControllerServlet">
 						<c:param name="command" value="DELETE" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
-					</c:url>
-																		
+					</c:url>												
 					<tr>
 						<td> ${counter.count} </td>
-						<td> ${tempDetails.firstName} </td>
-						<td>${tempDetails.middleName}</td>
-						<td>${tempDetails.lastName}</td>
-						<td>${tempDetails.designation}</td>
-						<td>${tempDetails.age}</td>
-						<td>${tempDetails.gender}</td>
-						<td>${tempDetails.category}</td>
-						<td>${tempDetails.profession}</td>
-						<td>${tempDetails.contact}</td>
+						<td> ${tempDetails.propertyType} </td>
+						<td>${tempDetails.propertyName}</td>
+						<td>${tempDetails.area}</td>
+						<td>${tempDetails.location}</td>
+						<td>${tempDetails.identifier}</td>
+						<td>${tempDetails.purpose}</td>
+						<td>${tempDetails.leasedOut}</td>
+						<td>${tempDetails.leasedFrom}</td>
+						<td>${tempDetails.leasedTo}</td>
+						<td>${tempDetails.leaseAmount}</td>
+						<td>${tempDetails.leaseAmountpyear}</td>
 						<td> 
 							<a href="${tempLink}">Update</a> 
 							 | 
@@ -77,9 +79,9 @@
 							Delete</a>	
 						</td>
 					</tr>
+					</c:forEach>
 				
-				</c:forEach>
-				-->
+						
 			</table>
 		
 		</div>

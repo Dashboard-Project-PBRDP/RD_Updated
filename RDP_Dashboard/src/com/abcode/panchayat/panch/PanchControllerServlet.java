@@ -47,6 +47,7 @@ int panchayat_id = 0;
 			
 		session = request.getSession();
 		panchayat_id = (int) session.getAttribute("panchayat_id");
+		
 		try {
 			// read the "command" parameter
  			String theCommand = request.getParameter("command");

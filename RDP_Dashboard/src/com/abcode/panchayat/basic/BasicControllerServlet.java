@@ -45,6 +45,7 @@ public class BasicControllerServlet extends HttpServlet{
 
 private HttpSession session;
 int panchayat_id = 0;
+String panchayatName="";
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -52,6 +53,8 @@ int panchayat_id = 0;
 			
 		session  = request.getSession();
 		panchayat_id = (int) session.getAttribute("panchayat_id");
+		panchayatName =(String) session.getAttribute("panchayatName");
+
 		try {
 			// read the "command" parameter
  			String theCommand = request.getParameter("command");

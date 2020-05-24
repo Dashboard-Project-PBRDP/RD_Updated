@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Bank Account Details</title>
-<link type="text/css" rel="stylesheet" href="css/style.css">
+	<title>Bank Details</title>
+	
+	<link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div id="wrapper">
+
+	<div id="wrapper">
 		<div id="header">
 			<h2>${sessionScope.districtName} > ${sessionScope.blockName}> ${sessionScope.panchayatName}</h2>
 		</div>
@@ -24,9 +27,7 @@
 				   onclick="window.location.href='panchayat/add-bank-form.jsp'; return false;"
 				   class="add-student-button"
 			/>
-			
 			<table>
-			
 				<tr>
 					<th>Sr No</th>
 					<th>Name of Bank</th>
@@ -36,37 +37,37 @@
 					<th>Purpose</th>
 					<th>Current Balance</th>
 					<th>Date of Fetching Balance</th>
-					<th>Account Active (Y/N)</th>
+					<th>Account Active (YES/NO)</th>
 					<th>Year of Opening</th>
 					<th>Year of Closing</th>
 					
 				</tr>
-				<!--  
-				<c:forEach var="tempDetails" items="${Panch_List}" varStatus="counter">
+			
+				<c:forEach var="tempDetails" items="${Bank_List}" varStatus="counter">
 					
-					
-					<c:url var="tempLink" value="PanchControllerServlet">
+					<!--  set up a link to update a details -->
+					<c:url var="tempLink" value="BankControllerServlet">
 						<c:param name="command" value="LOAD" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
 					</c:url>
 
-					
-					<c:url var="deleteLink" value="PanchControllerServlet">
+					<!--  set up a link to delete a details -->
+					<c:url var="deleteLink" value="BankControllerServlet">
 						<c:param name="command" value="DELETE" />
 						<c:param name="detailsId" value="${tempDetails.id}" />
-					</c:url>
-																		
+					</c:url>												
 					<tr>
 						<td> ${counter.count} </td>
-						<td> ${tempDetails.firstName} </td>
-						<td>${tempDetails.middleName}</td>
-						<td>${tempDetails.lastName}</td>
-						<td>${tempDetails.designation}</td>
-						<td>${tempDetails.age}</td>
-						<td>${tempDetails.gender}</td>
-						<td>${tempDetails.category}</td>
-						<td>${tempDetails.profession}</td>
-						<td>${tempDetails.contact}</td>
+						<td> ${tempDetails.bankName} </td>
+						<td>${tempDetails.branch}</td>
+						<td>${tempDetails.ifscCode}</td>
+						<td>${tempDetails.accountNumber}</td>
+						<td>${tempDetails.purpose}</td>
+						<td>${tempDetails.currentBalance}</td>
+						<td>${tempDetails.date}</td>
+						<td>${tempDetails.activeAccount}</td>
+						<td>${tempDetails.openingYear}</td>
+						<td>${tempDetails.closingYear}</td>
 						<td> 
 							<a href="${tempLink}">Update</a> 
 							 | 
@@ -75,9 +76,9 @@
 							Delete</a>	
 						</td>
 					</tr>
+					</c:forEach>
 				
-				</c:forEach>
-				-->
+						
 			</table>
 		
 		</div>
@@ -88,5 +89,6 @@
 		<p>
 			<a href="PDetailControllerServlet">Back to List of Links</a>
 		</p>
-	</div></body>
+	</div>
+</body>
 </html>

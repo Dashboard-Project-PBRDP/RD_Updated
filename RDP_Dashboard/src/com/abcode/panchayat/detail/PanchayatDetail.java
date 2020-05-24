@@ -4,9 +4,12 @@ public class PanchayatDetail {
 private int pId;
 private int pDetailId;
 private String pDetail;
-public PanchayatDetail(int pId, int pDetailId, String pDetail) {
+private String panchayatName;
+
+public PanchayatDetail(int pId,String panchayatName, int pDetailId, String pDetail) {
 	super();
 	this.pId = pId;
+	this.panchayatName=panchayatName;
 	this.pDetailId = pDetailId;
 	this.pDetail = pDetail;
 }
@@ -15,6 +18,12 @@ public int getpId() {
 }
 public void setpId(int pId) {
 	this.pId = pId;
+}
+public String getpanchayatName() {
+	return panchayatName;
+}
+public void setpanchayatName(String panchayatName) {
+	this.panchayatName = panchayatName;
 }
 public int getpDetailId() {
 	return pDetailId;

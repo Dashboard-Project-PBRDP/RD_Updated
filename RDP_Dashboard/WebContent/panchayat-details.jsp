@@ -12,7 +12,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h3>${sessionScope.districtName} > ${sessionScope.blockName} > ${panchayatName}</h3>
+			<h3>${sessionScope.districtName} > ${sessionScope.blockName} > ${sessionScope.panchayatName}</h3>
 		</div>
 	</div>
 
@@ -35,6 +35,8 @@
 					<c:url var="detailLink" value="PDetailControllerServlet">
 						<c:param name="command" value="${tempPanchayat.pDetailId}" />
 						<c:param name="panchayatId" value="${tempPanchayat.pId}" />
+						<c:param name="panchayatName" value="${tempPanchayat.panchayatName}" />
+						
 					</c:url>
 																
 					<tr>
